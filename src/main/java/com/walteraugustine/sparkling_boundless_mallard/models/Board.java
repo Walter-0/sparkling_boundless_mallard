@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Document
 public class Board {
@@ -28,7 +29,14 @@ public class Board {
         return lists;
     }
 
-    public void setLists(Collection<List> lists) {
-        this.lists = lists;
+//    public Optional<List> getListByName(String listName) {
+//    }
+
+    public void setList(Collection<List> list) {
+        this.lists = list;
+    }
+
+    public void addList(List newList) {
+        this.lists.add(newList);
     }
 }

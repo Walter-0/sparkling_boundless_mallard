@@ -3,6 +3,8 @@ package com.walteraugustine.sparkling_boundless_mallard.services;
 import com.walteraugustine.sparkling_boundless_mallard.DAO.BoardDAO;
 import com.walteraugustine.sparkling_boundless_mallard.models.Board;
 import com.walteraugustine.sparkling_boundless_mallard.models.BoardUpdatePayload;
+import com.walteraugustine.sparkling_boundless_mallard.models.Card;
+import com.walteraugustine.sparkling_boundless_mallard.models.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,4 +35,12 @@ public class BoardService {
     public Optional<Board> deleteBoardById(String id) {
         return boardDAO.deleteBoard(id);
     }
+
+    public Optional<Board> addList(String boardId, List list) {
+        return boardDAO.addList(boardId, list);
+    }
+
+//    public Optional<Board> addCardToList(String boardId, String listName, Card card) {
+//        return boardDAO.addCardToList(boardId, listName, card);
+//    }
 }

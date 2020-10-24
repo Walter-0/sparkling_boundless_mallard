@@ -2,7 +2,10 @@ package com.walteraugustine.sparkling_boundless_mallard.DAO;
 
 import com.walteraugustine.sparkling_boundless_mallard.models.Board;
 import com.walteraugustine.sparkling_boundless_mallard.models.BoardUpdatePayload;
+import com.walteraugustine.sparkling_boundless_mallard.models.Card;
+import com.walteraugustine.sparkling_boundless_mallard.models.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -25,6 +28,15 @@ public class BoardDAO {
         return repository.insert(board);
     }
 
+    public Optional<Board> updateBoardById(String id, BoardUpdatePayload boardUpdatePayload) {
+        Optional<Board> board = repository.findById(id);
+
+        board.ifPresent(b -> b.setName(boardUpdatePayload.getName()));
+        board.ifPresent(b -> repository.save(b));
+
+        return board;
+    }
+
     public Optional<Board> deleteBoard(String id) {
         Optional<Board> board = repository.findById(id);
 
@@ -33,13 +45,19 @@ public class BoardDAO {
         return board;
     }
 
-    public Optional<Board> updateBoardById(String id, BoardUpdatePayload boardUpdatePayload) {
-        Optional<Board> board = repository.findById(id);
+    public Optional<Board> addList(String boardId, List list) {
+        Optional<Board> board = repository.findById(boardId);
 
-        board.ifPresent(b -> b.setName(boardUpdatePayload.getName()));
-        board.ifPresent(b -> b.setLists(boardUpdatePayload.getLists()));
+        board.ifPresent(b -> b.addList(list));
         board.ifPresent(b -> repository.save(b));
 
         return board;
     }
+
+//    public Optional<Board> addCardToList(String boardId, String listName, Card card) {
+//        Optional<Board> board = repository.findById(boardId);
+//        board.ifPresent(b -> b.addCardToList(listName, card));
+//        board.ifPresent(b -> repository.save(b));
+//        return board;
+//    }
 }
