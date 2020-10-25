@@ -12,6 +12,7 @@ public class Board {
     private String id;
     private String name;
     private Collection<List> lists;
+    private String owner;
 
     public String getId() {
         return id;
@@ -39,4 +40,10 @@ public class Board {
     public void addList(List newList) {
         this.lists.add(newList);
     }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) { this.owner = owner;}
 }
