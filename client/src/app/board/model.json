@@ -1,0 +1,34 @@
+{
+  "title": "Boards",
+  "entity": "board",
+  "api": {
+    "url": "http://localhost:8080/api/boards"
+  },
+  "filter": [
+    "name"
+  ],
+  "fields": [
+    {
+      "name": "_id",
+      "label": "Id",
+      "isId": true,
+      "readonly": true,
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "label": "Name"
+    },
+    {
+      "name": "lists",
+      "type": "string",
+      "label": "Lists"
+    },
+    {
+      "name": "owner",
+      "type": "string",
+      "label": "Owner"
+    }
+  ]
+}

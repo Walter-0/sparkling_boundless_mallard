@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -19,7 +20,13 @@ public class UserController {
     @GetMapping("/boards")
     public Collection<Board> getUserBoards(Principal principal) {
         System.out.println("Fetching boards for user: " + principal.getName());
-        return repository.findAllByOwner(principal.getName());
+        Collection<Board> boards = repository.findAllByOwner(principal.getName());
+
+        if (boards.isEmpty()) {
+            return List.of();
+        } else {
+            return boards;
+        }
     }
 
     @GetMapping
